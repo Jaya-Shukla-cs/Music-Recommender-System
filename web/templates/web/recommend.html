@@ -1,0 +1,38 @@
+{% extends 'web/base.html'%}
+{% block title %}Recommendations{% endblock %}
+{% block body %}
+
+<div class="container-fluid">
+	<h2>Recommendations for You </h2>
+</div>
+
+
+	<div class="container-fluid">
+    
+    <!-- Music list -->
+    <div class="row">
+            {% if music_list %}
+            {% for music in music_list %}
+                <div class="col-sm-2 col-md-2 ">
+                    <div class="thumbnail">
+                        <h4>{{music.title}}</h4>
+                        <a href="{% url 'detail' music.id %}">
+                            <img src="{{ music.music_logo.url}}" class="img-responsive">
+                        </a>
+                        <h5>{{music.album}}</h5>
+                        <div class="caption">
+
+                            <!-- View Details -->
+                            <a href="{% url 'detail' music.id %}" class="btn btn-primary btn-sm" role="button">Give Rating</a>
+
+                                        
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+        </div>
+    
+</div>
+
+{% endblock %}
